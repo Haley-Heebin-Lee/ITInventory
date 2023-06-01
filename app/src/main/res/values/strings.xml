@@ -1,0 +1,32 @@
+<resources>
+    <string name="app_name">ITInventory</string>
+    <string name="mainPage">SWB IT Inventory</string>
+    <string name="listBtn">List of Inventory</string>
+    <string name="licenseBtn">Check license expiry</string>
+    <string name="listEquip">List of IT Equipment</string>
+    <string name="empty_list">Inventory is Empty</string>
+    <string name="add_item_txt">Add Item</string>
+    <string name="update_item_txt">Update Description</string>
+    <string name="add_name">Name:</string>
+    <string name="add_loc">Location:</string>
+    <string name="update_item">#Item name here</string>
+    <string name="add_amount">Amount:</string>
+    <string name="add_desc">Description:</string>
+    <string name="cancel">CANCEL</string>
+    <string name="ok">OK</string>
+    <string name="loc_evans">Evans</string>
+    <string name="loc_rh">RH</string>
+    <string name="newSub_btn">Add New Subscription</string>
+    <string name="newUser_btn">Add New User</string>
+    <string name="deleteUser_btn">Delete User</string>
+    <string name="listSub_btn">List of Subscription</string>
+    <string name="add_license_txt">Add License</string>
+    <string name="accountWise_checkbox">Accountwide</string>
+    <string name="license_date_txt">Select expiry date:</string>
+    <string name="updateSub_btn">Update expiry date</string>
+    <string name="deleteSub_btn">Delete License</string>
+    <string name="choose_license_txt">Choose a license to update:</string>
+    <string name="delete_license_txt">Choose a license to delete:</string>
+    <string name="manage_license_txt">Manage License</string>
+    <string name="manage_user_txt">Manage Users</string>
+</resources>
