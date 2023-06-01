@@ -1,0 +1,401 @@
+
+type User @aws_iam @aws_api_key {
+  id: ID!
+  name: String!
+  email: AWSEmail!
+  expiry: AWSDate!
+  licenseID: ID!
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+  _version: Int!
+  _deleted: Boolean
+  _lastChangedAt: AWSTimestamp!
+}
+
+type License @aws_iam @aws_api_key {
+  id: ID!
+  expiry: AWSDate!
+  accountWide: Boolean!
+  name: String!
+  users(filter: ModelUserFilterInput, sortDirection: ModelSortDirection, limit: Int, nextToken: String): ModelUserConnection
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+  _version: Int!
+  _deleted: Boolean
+  _lastChangedAt: AWSTimestamp!
+}
+
+type Inventory @aws_iam @aws_api_key {
+  id: ID!
+  name: String!
+  amount: Int!
+  description: String
+  location: String!
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+  _version: Int!
+  _deleted: Boolean
+  _lastChangedAt: AWSTimestamp!
+}
+
+input ModelStringInput {
+  ne: String
+  eq: String
+  le: String
+  lt: String
+  ge: String
+  gt: String
+  contains: String
+  notContains: String
+  between: [String]
+  beginsWith: String
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+  size: ModelSizeInput
+}
+
+input ModelIntInput {
+  ne: Int
+  eq: Int
+  le: Int
+  lt: Int
+  ge: Int
+  gt: Int
+  between: [Int]
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+}
+
+input ModelFloatInput {
+  ne: Float
+  eq: Float
+  le: Float
+  lt: Float
+  ge: Float
+  gt: Float
+  between: [Float]
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+}
+
+input ModelBooleanInput {
+  ne: Boolean
+  eq: Boolean
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+}
+
+input ModelIDInput {
+  ne: ID
+  eq: ID
+  le: ID
+  lt: ID
+  ge: ID
+  gt: ID
+  contains: ID
+  notContains: ID
+  between: [ID]
+  beginsWith: ID
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+  size: ModelSizeInput
+}
+
+input ModelSubscriptionStringInput {
+  ne: String
+  eq: String
+  le: String
+  lt: String
+  ge: String
+  gt: String
+  contains: String
+  notContains: String
+  between: [String]
+  beginsWith: String
+  in: [String]
+  notIn: [String]
+}
+
+input ModelSubscriptionIntInput {
+  ne: Int
+  eq: Int
+  le: Int
+  lt: Int
+  ge: Int
+  gt: Int
+  between: [Int]
+  in: [Int]
+  notIn: [Int]
+}
+
+input ModelSubscriptionFloatInput {
+  ne: Float
+  eq: Float
+  le: Float
+  lt: Float
+  ge: Float
+  gt: Float
+  between: [Float]
+  in: [Float]
+  notIn: [Float]
+}
+
+input ModelSubscriptionBooleanInput {
+  ne: Boolean
+  eq: Boolean
+}
+
+input ModelSubscriptionIDInput {
+  ne: ID
+  eq: ID
+  le: ID
+  lt: ID
+  ge: ID
+  gt: ID
+  contains: ID
+  notContains: ID
+  between: [ID]
+  beginsWith: ID
+  in: [ID]
+  notIn: [ID]
+}
+
+enum ModelAttributeTypes {
+  binary
+  binarySet
+  bool
+  list
+  map
+  number
+  numberSet
+  string
+  stringSet
+  _null
+}
+
+input ModelSizeInput {
+  ne: Int
+  eq: Int
+  le: Int
+  lt: Int
+  ge: Int
+  gt: Int
+  between: [Int]
+}
+
+enum ModelSortDirection {
+  ASC
+  DESC
+}
+
+type ModelUserConnection @aws_api_key @aws_iam {
+  items: [User]!
+  nextToken: String
+  startedAt: AWSTimestamp
+}
+
+input ModelUserFilterInput {
+  id: ModelIDInput
+  name: ModelStringInput
+  email: ModelStringInput
+  expiry: ModelStringInput
+  licenseID: ModelIDInput
+  and: [ModelUserFilterInput]
+  or: [ModelUserFilterInput]
+  not: ModelUserFilterInput
+}
+
+type Query {
+  getUser(id: ID!): User @aws_api_key @aws_iam
+  listUsers(filter: ModelUserFilterInput, limit: Int, nextToken: String): ModelUserConnection @aws_api_key @aws_iam
+  syncUsers(filter: ModelUserFilterInput, limit: Int, nextToken: String, lastSync: AWSTimestamp): ModelUserConnection @aws_api_key @aws_iam
+  getLicense(id: ID!): License @aws_api_key @aws_iam
+  listLicenses(filter: ModelLicenseFilterInput, limit: Int, nextToken: String): ModelLicenseConnection @aws_api_key @aws_iam
+  syncLicenses(filter: ModelLicenseFilterInput, limit: Int, nextToken: String, lastSync: AWSTimestamp): ModelLicenseConnection @aws_api_key @aws_iam
+  getInventory(id: ID!): Inventory @aws_api_key @aws_iam
+  listInventories(filter: ModelInventoryFilterInput, limit: Int, nextToken: String): ModelInventoryConnection @aws_api_key @aws_iam
+  syncInventories(filter: ModelInventoryFilterInput, limit: Int, nextToken: String, lastSync: AWSTimestamp): ModelInventoryConnection @aws_api_key @aws_iam
+}
+
+input ModelUserConditionInput {
+  name: ModelStringInput
+  email: ModelStringInput
+  expiry: ModelStringInput
+  licenseID: ModelIDInput
+  and: [ModelUserConditionInput]
+  or: [ModelUserConditionInput]
+  not: ModelUserConditionInput
+}
+
+input CreateUserInput {
+  id: ID
+  name: String!
+  email: AWSEmail!
+  expiry: AWSDate!
+  licenseID: ID!
+  _version: Int
+}
+
+input UpdateUserInput {
+  id: ID!
+  name: String
+  email: AWSEmail
+  expiry: AWSDate
+  licenseID: ID
+  _version: Int
+}
+
+input DeleteUserInput {
+  id: ID!
+  _version: Int
+}
+
+type Mutation {
+  createUser(input: CreateUserInput!, condition: ModelUserConditionInput): User @aws_api_key @aws_iam
+  updateUser(input: UpdateUserInput!, condition: ModelUserConditionInput): User @aws_api_key @aws_iam
+  deleteUser(input: DeleteUserInput!, condition: ModelUserConditionInput): User @aws_api_key @aws_iam
+  createLicense(input: CreateLicenseInput!, condition: ModelLicenseConditionInput): License @aws_api_key @aws_iam
+  updateLicense(input: UpdateLicenseInput!, condition: ModelLicenseConditionInput): License @aws_api_key @aws_iam
+  deleteLicense(input: DeleteLicenseInput!, condition: ModelLicenseConditionInput): License @aws_api_key @aws_iam
+  createInventory(input: CreateInventoryInput!, condition: ModelInventoryConditionInput): Inventory @aws_api_key @aws_iam
+  updateInventory(input: UpdateInventoryInput!, condition: ModelInventoryConditionInput): Inventory @aws_api_key @aws_iam
+  deleteInventory(input: DeleteInventoryInput!, condition: ModelInventoryConditionInput): Inventory @aws_api_key @aws_iam
+}
+
+input ModelSubscriptionUserFilterInput {
+  id: ModelSubscriptionIDInput
+  name: ModelSubscriptionStringInput
+  email: ModelSubscriptionStringInput
+  expiry: ModelSubscriptionStringInput
+  licenseID: ModelSubscriptionIDInput
+  and: [ModelSubscriptionUserFilterInput]
+  or: [ModelSubscriptionUserFilterInput]
+}
+
+type Subscription {
+  onCreateUser(filter: ModelSubscriptionUserFilterInput): User @aws_subscribe(mutations: ["createUser"]) @aws_api_key @aws_iam
+  onUpdateUser(filter: ModelSubscriptionUserFilterInput): User @aws_subscribe(mutations: ["updateUser"]) @aws_api_key @aws_iam
+  onDeleteUser(filter: ModelSubscriptionUserFilterInput): User @aws_subscribe(mutations: ["deleteUser"]) @aws_api_key @aws_iam
+  onCreateLicense(filter: ModelSubscriptionLicenseFilterInput): License @aws_subscribe(mutations: ["createLicense"]) @aws_api_key @aws_iam
+  onUpdateLicense(filter: ModelSubscriptionLicenseFilterInput): License @aws_subscribe(mutations: ["updateLicense"]) @aws_api_key @aws_iam
+  onDeleteLicense(filter: ModelSubscriptionLicenseFilterInput): License @aws_subscribe(mutations: ["deleteLicense"]) @aws_api_key @aws_iam
+  onCreateInventory(filter: ModelSubscriptionInventoryFilterInput): Inventory @aws_subscribe(mutations: ["createInventory"]) @aws_api_key @aws_iam
+  onUpdateInventory(filter: ModelSubscriptionInventoryFilterInput): Inventory @aws_subscribe(mutations: ["updateInventory"]) @aws_api_key @aws_iam
+  onDeleteInventory(filter: ModelSubscriptionInventoryFilterInput): Inventory @aws_subscribe(mutations: ["deleteInventory"]) @aws_api_key @aws_iam
+}
+
+type ModelLicenseConnection @aws_api_key @aws_iam {
+  items: [License]!
+  nextToken: String
+  startedAt: AWSTimestamp
+}
+
+input ModelLicenseFilterInput {
+  id: ModelIDInput
+  expiry: ModelStringInput
+  accountWide: ModelBooleanInput
+  name: ModelStringInput
+  and: [ModelLicenseFilterInput]
+  or: [ModelLicenseFilterInput]
+  not: ModelLicenseFilterInput
+}
+
+input ModelLicenseConditionInput {
+  expiry: ModelStringInput
+  accountWide: ModelBooleanInput
+  name: ModelStringInput
+  and: [ModelLicenseConditionInput]
+  or: [ModelLicenseConditionInput]
+  not: ModelLicenseConditionInput
+}
+
+input CreateLicenseInput {
+  id: ID
+  expiry: AWSDate!
+  accountWide: Boolean!
+  name: String!
+  _version: Int
+}
+
+input UpdateLicenseInput {
+  id: ID!
+  expiry: AWSDate
+  accountWide: Boolean
+  name: String
+  _version: Int
+}
+
+input DeleteLicenseInput {
+  id: ID!
+  _version: Int
+}
+
+input ModelSubscriptionLicenseFilterInput {
+  id: ModelSubscriptionIDInput
+  expiry: ModelSubscriptionStringInput
+  accountWide: ModelSubscriptionBooleanInput
+  name: ModelSubscriptionStringInput
+  and: [ModelSubscriptionLicenseFilterInput]
+  or: [ModelSubscriptionLicenseFilterInput]
+}
+
+type ModelInventoryConnection @aws_api_key @aws_iam {
+  items: [Inventory]!
+  nextToken: String
+  startedAt: AWSTimestamp
+}
+
+input ModelInventoryFilterInput {
+  id: ModelIDInput
+  name: ModelStringInput
+  amount: ModelIntInput
+  description: ModelStringInput
+  location: ModelStringInput
+  and: [ModelInventoryFilterInput]
+  or: [ModelInventoryFilterInput]
+  not: ModelInventoryFilterInput
+}
+
+input ModelInventoryConditionInput {
+  name: ModelStringInput
+  amount: ModelIntInput
+  description: ModelStringInput
+  location: ModelStringInput
+  and: [ModelInventoryConditionInput]
+  or: [ModelInventoryConditionInput]
+  not: ModelInventoryConditionInput
+}
+
+input CreateInventoryInput {
+  id: ID
+  name: String!
+  amount: Int!
+  description: String
+  location: String!
+  _version: Int
+}
+
+input UpdateInventoryInput {
+  id: ID!
+  name: String
+  amount: Int
+  description: String
+  location: String
+  _version: Int
+}
+
+input DeleteInventoryInput {
+  id: ID!
+  _version: Int
+}
+
+input ModelSubscriptionInventoryFilterInput {
+  id: ModelSubscriptionIDInput
+  name: ModelSubscriptionStringInput
+  amount: ModelSubscriptionIntInput
+  description: ModelSubscriptionStringInput
+  location: ModelSubscriptionStringInput
+  and: [ModelSubscriptionInventoryFilterInput]
+  or: [ModelSubscriptionInventoryFilterInput]
+}
+

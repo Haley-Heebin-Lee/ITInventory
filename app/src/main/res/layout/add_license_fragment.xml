@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:id="@+id/add_license_frag">
+
+    <TextView
+        android:id="@+id/add_license_txt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_gravity="center"
+        android:padding="50dp"
+        android:text="@string/add_license_txt"
+        android:textAlignment="center"
+        android:textSize="25sp" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/add_license_txt"
+        android:textSize="15sp"
+        android:textColor="@color/red"
+        android:id="@+id/warning_txt"
+        />
+
+    <RelativeLayout
+        android:id="@+id/license_name_linear"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/warning_txt"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/license_name_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="@string/add_name"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/license_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@+id/license_name_txt"
+            android:inputType="text"
+            android:autofillHints="Enter subscription name"
+            android:padding="10dp"
+            android:layout_marginEnd="10dp"
+            android:textSize="20sp" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/accountwide_linear"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/license_name_linear"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true">
+
+        <CheckBox
+            android:id="@+id/accountWide_checkbox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15sp"
+            android:onClick="onCheckboxClicked"
+            android:padding="15dp"
+            android:text="@string/accountWise_checkbox"
+            android:textSize="20sp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/license_date_linear"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/accountwide_linear">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/license_date_txt"
+            android:text="@string/license_date_txt"
+            android:textSize="20sp"
+            android:padding="10dp"/>
+
+        <DatePicker
+            android:id="@+id/license_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/license_date_txt"
+            android:layout_marginLeft="15sp"
+            android:calendarViewShown="false"
+            android:datePickerMode="spinner"
+            android:padding="10dp" />
+
+    </RelativeLayout>
+
+
+    <TextView
+        android:id="@+id/action_cancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:padding="10dp"
+        android:text="@string/cancel"
+        android:textColor="#33bbff"
+        android:textSize="20sp"
+        android:layout_below="@+id/license_date_linear"/>
+
+    <TextView
+        android:id="@+id/action_ok"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:padding="10dp"
+        android:layout_below="@+id/license_date_linear"
+        android:text="@string/ok"
+        android:textColor="#33bbff"
+        android:textSize="20sp" />
+
+
+</RelativeLayout>

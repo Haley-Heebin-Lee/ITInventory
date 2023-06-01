@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:id="@+id/update_item_frag">
+
+    <TextView
+        android:id="@+id/update_item_txt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_gravity="center"
+        android:padding="50dp"
+        android:text="@string/update_item_txt"
+        android:textAlignment="center"
+        android:textSize="25sp" />
+
+        <TextView
+            android:id="@+id/update_txt"
+            android:layout_below="@+id/update_item_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:textStyle="bold"
+            android:text="@string/update_item"
+            android:textSize="15sp" />
+    <EditText
+        android:id="@+id/update_desc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/update_txt"
+        android:inputType="text"
+        android:textSize="20sp"
+        android:autofillHints="Enter description"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:padding="10dp"/>
+
+    <TextView
+        android:id="@+id/action_cancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:padding="10dp"
+        android:layout_marginTop="40dp"
+        android:text="@string/cancel"
+        android:textColor="#33bbff"
+        android:textSize="20sp"
+        android:layout_below="@+id/update_desc"/>
+
+    <TextView
+        android:id="@+id/action_ok"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:padding="10dp"
+        android:layout_marginTop="40dp"
+        android:layout_below="@+id/update_desc"
+        android:text="@string/ok"
+        android:textColor="#33bbff"
+        android:textSize="20sp" />
+
+
+</RelativeLayout>

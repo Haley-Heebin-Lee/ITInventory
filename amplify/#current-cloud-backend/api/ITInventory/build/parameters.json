@@ -1,0 +1,13 @@
+{
+    "AppSyncApiName": "ITInventory",
+    "DynamoDBBillingMode": "PAY_PER_REQUEST",
+    "DynamoDBEnableServerSideEncryption": false,
+    "authRoleName": {
+        "Ref": "AuthRoleName"
+    },
+    "unauthRoleName": {
+        "Ref": "UnauthRoleName"
+    },
+    "S3DeploymentBucket": "amplify-itinventory-dev-152651-deployment",
+    "S3DeploymentRootKey": "amplify-appsync-files/0c0abef6e67cb0e6eac78da8930c6eea66ee7b83"
+}
